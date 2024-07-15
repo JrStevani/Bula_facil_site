@@ -1,30 +1,39 @@
-// Função para buscar e processar os dados da API
-function buscarBulaMedicamento(medicamento) {
-    // URL da API com o nome do medicamento
-    var url = `https://bula.vercel.app/pesquisar?nome=${encodeURIComponent(medicamento)}&pagina=1`;
+document.getElementById('formMedicamento').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evita o envio do formulário
     var medicamento = document.getElementById('medicamento').value;
-    // Faz a requisição GET para a API usando fetch
-    fetch(url, {
+    fetch(`https://bula.vercel.app/pesquisar?nome=${medicamento}&pagina=1`, {
         method: "GET"
     })
-    .then(response => {
-        // Verifica se a resposta da API está ok (status 200)
-        if (!response.ok) {
-            throw new Error(`Erro na requisição: ${response.status}`);
-        }
-        // Retorna a resposta como JSON
-        return response.json();
-    })
+    .then(response => response.json()) // Converte a resposta em JSON
     .then(data => {
-        // Processa os dados recebidos da API (exemplo: exibir no console)
-        console.log("Dados da API:", data);
-        // Aqui você pode adicionar mais lógica para manipular os dados, como exibir em uma interface HTML
+        // Manipula os dados recebidos
+        console.log(data);
+        if (data && data.content && data.content.length > 0) {
+            var id = data.content[0].idBulaPacienteProtegido;
+            fetch(`https://bula.vercel.app/bula?id=${id}`, {
+                method: "GET"
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data && data.pdf) {
+                    var url = data.pdf;
+                    //alert(`URL da bula: ${url}`);
+                    window.location.href = url;
+                } else {
+                    alert('Bula não encontrada.');
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Erro ao buscar a bula do medicamento.');
+            });
+        } else {
+            alert('Nenhuma bula encontrada para o medicamento informado.');
+        }
     })
     .catch(err => {
-        // Trata erros que possam ocorrer durante a requisição
-        console.error("Erro na requisição:", err);
+        console.error(err);
+        alert('Erro ao buscar a bula do medicamento.');
     });
-}
-
-// Exemplo de uso: chamando a função para buscar informações sobre AMOXICILINA
-buscarBulaMedicamento('AMOXICILINA');
+});
