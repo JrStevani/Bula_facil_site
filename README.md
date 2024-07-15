@@ -1,5 +1,7 @@
 # Bula_facil_site
 
+<a href="https://jrstevani.github.io/Bula_facil_site/index.html">Veja o projeto</a>
+
 Projeto Bula Fácil
 O Projeto Bula Fácil oferece uma maneira prática e eficiente de acessar bulas de medicamentos. Com uma interface simples e intuitiva, os usuários podem buscar pelo nome do medicamento desejado e obter rapidamente o link para download da bula ou realizar o download direto do PDF.
 
