@@ -1,6 +1,6 @@
 # Bula_facil_site
 
-<strong><a href="https://jrstevani.github.io/Bula_facil_site/index.html">Veja o projeto</a></strong>
+<strong><a href="https://jrstevani.github.io/Bula_facil_site/index.html" target="_blank">Veja o projeto</a></strong>
 
 
 
