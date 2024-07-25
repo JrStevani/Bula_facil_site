@@ -23,7 +23,7 @@ function fetchBula(medicamento, retries = 3) {
                     var linkContainer = document.getElementById('downloadLinkContainer');
                     var anchor = document.createElement('a');
                     anchor.href = url;
-                    anchor.textContent = `<p>Download de ${medicamento}</p>`;
+                    anchor.innerHtml = `<p>Download de ${medicamento}</p>`;
                     linkContainer.appendChild(anchor);
                 } else {
                     alert('Bula não encontrada.');
