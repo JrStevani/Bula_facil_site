@@ -20,7 +20,7 @@ function fetchBula(medicamento, retries = 3) {
                     linkContainer.innerHTML = '';  
                     var anchor = document.createElement('a');
                     anchor.href = url;
-                    anchor.textContent = `Download de ${medicamento}`;
+                    anchor.innerHtml = `<p>Download de ${medicamento}</p>`;
                     linkContainer.appendChild(anchor);
 
                 } else {
